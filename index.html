@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSphere - 云端代码助手</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-code"></i>
+                <span>CodeSphere</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#features">功能特性</a></li>
+                <li><a href="#demo">产品演示</a></li>
+                <li><a href="#pricing">计费</a></li>
+                <li><a href="#login" class="login-btn">登录/注册</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>基于原生 Claude Code 的云端代码助手</h1>
+                <p>以沙盒 (Sandboxes) 为核心，为每个任务提供隔离沙箱、并行智能体等完整功能。让你在云端运行 Claude Code，省去本地配置的麻烦。</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToDemo()">立即体验</button>
+                    <button class="btn-secondary" onclick="scrollToFeatures()">了解更多</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="code-preview">
+                    <div class="code-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="filename">main.py</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code>import requests
+
+def analyze_code():
+    # AI 智能代码分析
+    response = requests.get('api/code')
+    return response.json()
+
+# 云端运行，无需本地配置
+result = analyze_code()
+print("代码分析完成！")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能特性 -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>核心功能特性</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>安全隔离环境</h3>
+                    <p>基于 AWS Firecracker 技术，毫秒级拉起独立内核、完全隔离的微型虚拟机。每个任务都在独立虚拟环境中运行。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <h3>Git 集成</h3>
+                    <p>任务依赖代码仓库，拉取仓库项目分支、调用大模型生成代码、自动提交 PR 等系列流程。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>并行智能体</h3>
+                    <p>同时启动多个智能体，分工合作，提高代码生成和任务处理效率。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>云端运行</h3>
+                    <p>云端运行 Claude Code，无需本地配置环境，干净又高效。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>第三方模型集成</h3>
+                    <p>支持多种大模型，包括 Kimi、Qwen、GLM 等，满足不同需求。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>友好界面</h3>
+                    <p>简洁直观的用户界面，支持文件上传、图片识别等功能。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品演示 -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2>产品演示</h2>
+            <div class="demo-container">
+                <div class="demo-sidebar">
+                    <div class="model-selector">
+                        <h3>选择模型</h3>
+                        <select id="modelSelect">
+                            <option value="claude">Claude</option>
+                            <option value="kimi">Kimi</option>
+                            <option value="qwen">Qwen</option>
+                            <option value="glm">GLM</option>
+                        </select>
+                    </div>
+                    <div class="task-list">
+                        <h3>任务列表</h3>
+                        <div class="task-item active">
+                            <span class="task-name">代码分析任务</span>
+                            <span class="task-status completed">已完成</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-name">Bug 修复</span>
+                            <span class="task-status running">运行中</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-name">功能开发</span>
+                            <span class="task-status pending">等待中</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-main">
+                    <div class="input-section">
+                        <h3>输入指令</h3>
+                        <div class="input-container">
+                            <textarea id="userInput" placeholder="请输入您的指令，例如：分析这段代码的性能问题..."></textarea>
+                            <div class="input-actions">
+                                <button class="upload-btn">
+                                    <i class="fas fa-upload"></i>
+                                    上传文件
+                                </button>
+                                <button class="upload-btn">
+                                    <i class="fas fa-image"></i>
+                                    上传图片
+                                </button>
+                                <button class="submit-btn" onclick="submitTask()">
+                                    <i class="fas fa-play"></i>
+                                    执行任务
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <h3>AI 生成过程</h3>
+                        <div class="output-container">
+                            <div class="output-content" id="outputContent">
+                                <div class="ai-message">
+                                    <div class="ai-avatar">AI</div>
+                                    <div class="ai-text">
+                                        正在分析您的代码...<br>
+                                        <span class="typing-indicator">▋</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 计费方案 -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>计费方案</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>免费体验</h3>
+                        <div class="price">¥0</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 基础沙箱算力</li>
+                        <li><i class="fas fa-check"></i> 标准模型调用</li>
+                        <li><i class="fas fa-check"></i> 基础任务支持</li>
+                        <li><i class="fas fa-check"></i> 社区支持</li>
+                    </ul>
+                    <button class="btn-primary">立即开始</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3>专业版</h3>
+                        <div class="price">按需计费</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 高级沙箱算力</li>
+                        <li><i class="fas fa-check"></i> 所有模型支持</li>
+                        <li><i class="fas fa-check"></i> 并行智能体</li>
+                        <li><i class="fas fa-check"></i> 优先技术支持</li>
+                        <li><i class="fas fa-check"></i> 高级功能</li>
+                    </ul>
+                    <button class="btn-primary">了解更多</button>
+                </div>
+            </div>
+            <div class="pricing-note">
+                <p><i class="fas fa-info-circle"></i> 前期免费，用户只负担大模型的费用。后期会收取沙箱算力的费用。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CodeSphere</h4>
+                    <p>基于原生 Claude Code 的云端代码助手</p>
+                </div>
+                <div class="footer-section">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="#features">功能特性</a></li>
+                        <li><a href="#demo">产品演示</a></li>
+                        <li><a href="#pricing">计费方案</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>支持</h4>
+                    <ul>
+                        <li><a href="#">帮助文档</a></li>
+                        <li><a href="#">技术支持</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CodeSphere. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
