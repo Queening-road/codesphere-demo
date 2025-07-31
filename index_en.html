@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSphere - Cloud Code Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-code"></i>
+                <span>CodeSphere</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#login" class="login-btn">Login/Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Cloud Code Assistant Based on Native Claude Code</h1>
+                <p>Built around Sandboxes as the core, providing complete functionality including isolated sandboxes for each task and parallel intelligent agents. Run Claude Code in the cloud and eliminate the hassle of local configuration.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToDemo()">Try Now</button>
+                    <button class="btn-secondary" onclick="scrollToFeatures()">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="code-preview">
+                    <div class="code-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="filename">main.py</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code>import requests
+
+def analyze_code():
+    # AI intelligent code analysis
+    response = requests.get('api/code')
+    return response.json()
+
+# Run in cloud, no local configuration needed
+result = analyze_code()
+print("Code analysis completed!")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Core Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Isolated Environment</h3>
+                    <p>Based on AWS Firecracker technology, spinning up independent kernel, completely isolated micro virtual machines in milliseconds. Each task runs in an independent virtual environment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <h3>Git Integration</h3>
+                    <p>Tasks depend on code repositories, pulling repository project branches, calling large models to generate code, and automatically submitting PRs through a complete workflow.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Parallel Intelligent Agents</h3>
+                    <p>Launch multiple intelligent agents simultaneously, working together to improve code generation and task processing efficiency.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Execution</h3>
+                    <p>Run Claude Code in the cloud without local environment configuration - clean and efficient.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Third-party Model Integration</h3>
+                    <p>Support for various large models including Kimi, Qwen, GLM, and more to meet different needs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>User-friendly Interface</h3>
+                    <p>Clean and intuitive user interface with support for file uploads, image recognition, and other features.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Demo -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2>Product Demo</h2>
+            <div class="demo-container">
+                <div class="demo-sidebar">
+                    <div class="model-selector">
+                        <h3>Select Model</h3>
+                        <select id="modelSelect">
+                            <option value="claude">Claude</option>
+                            <option value="kimi">Kimi</option>
+                            <option value="qwen">Qwen</option>
+                            <option value="glm">GLM</option>
+                        </select>
+                    </div>
+                    <div class="task-list">
+                        <h3>Task List</h3>
+                        <div class="task-item active">
+                            <span class="task-name">Code Analysis Task</span>
+                            <span class="task-status completed">Completed</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-name">Bug Fix</span>
+                            <span class="task-status running">Running</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-name">Feature Development</span>
+                            <span class="task-status pending">Pending</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-main">
+                    <div class="input-section">
+                        <h3>Input Command</h3>
+                        <div class="input-container">
+                            <textarea id="userInput" placeholder="Please enter your command, for example: Analyze performance issues in this code..."></textarea>
+                            <div class="input-actions">
+                                <button class="upload-btn">
+                                    <i class="fas fa-upload"></i>
+                                    Upload File
+                                </button>
+                                <button class="upload-btn">
+                                    <i class="fas fa-image"></i>
+                                    Upload Image
+                                </button>
+                                <button class="submit-btn" onclick="submitTask()">
+                                    <i class="fas fa-play"></i>
+                                    Execute Task
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <h3>AI Generation Process</h3>
+                        <div class="output-container">
+                            <div class="output-content" id="outputContent">
+                                <div class="ai-message">
+                                    <div class="ai-avatar">AI</div>
+                                    <div class="ai-text">
+                                        Analyzing your code...<br>
+                                        <span class="typing-indicator">▋</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Pricing Plans</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Free Trial</h3>
+                        <div class="price">$0</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Basic sandbox computing</li>
+                        <li><i class="fas fa-check"></i> Standard model calls</li>
+                        <li><i class="fas fa-check"></i> Basic task support</li>
+                        <li><i class="fas fa-check"></i> Community support</li>
+                    </ul>
+                    <button class="btn-primary">Get Started</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3>Pro Version</h3>
+                        <div class="price">Pay-as-you-go</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Advanced sandbox computing</li>
+                        <li><i class="fas fa-check"></i> All model support</li>
+                        <li><i class="fas fa-check"></i> Parallel intelligent agents</li>
+                        <li><i class="fas fa-check"></i> Priority technical support</li>
+                        <li><i class="fas fa-check"></i> Advanced features</li>
+                    </ul>
+                    <button class="btn-primary">Learn More</button>
+                </div>
+            </div>
+            <div class="pricing-note">
+                <p><i class="fas fa-info-circle"></i> Initially free, users only pay for large model costs. Later we will charge for sandbox computing resources.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CodeSphere</h4>
+                    <p>Cloud Code Assistant Based on Native Claude Code</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CodeSphere. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script_en.js"></script>
+</body>
+</html>
